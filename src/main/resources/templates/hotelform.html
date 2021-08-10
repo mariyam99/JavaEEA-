@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" th:href="@{css/employeeForm.css}">
+    <!------ Include the above in your HEAD tag ---------->
+    <div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="display:none" id="mySidebar">
+        <button class="w3-bar-item w3-button w3-large"
+                onclick="w3_close()">Close &times;</button>
+        <a href="#" class="w3-bar-item w3-button">Link 1</a>
+        <a href="#" class="w3-bar-item w3-button">Link 2</a>
+        <a href="#" class="w3-bar-item w3-button">Link 3</a>
+    </div>
+</head>
+<body>
+
+
+<div id="main">
+
+    <div class="w3-teal">
+        <button id="openNav" class="w3-button w3-teal w3-xlarge" onclick="w3_open()">&#9776;</button>
+        <div class="w3-container">
+            <h1>My Page</h1>
+        </div>
+    </div>
+
+
+
+    <section class="get-in-touch">
+        <h1 class="title">Add your new branch now!Keep growing</h1>
+        <form class="contact-form row" th:action="@{/addHotel}" method="post" th:object="${hotel}">
+
+            <div class="alert alert_error" role="alert" th:text="${failure}" th:if="${failure}"></div>
+            <div class="alert_success" role="alert" th:text="${sucessHotel}" th:if="${sucessHotel}"></div>
+
+            <div class="form-field col-lg-6">
+                <input id="namehotel" class="input-text js-input" type="text" name="hotelName" required>
+                <label class="label" for="namehotel">Hotel Name</label>
+            </div>
+            <div class="form-field col-lg-6 ">
+                <input id="hotelCity" class="input-text js-input" type="text" name="hotelCity" required>
+                <label class="label" for="hotelCity">The new City.. </label>
+            </div>
+            <div class="form-field col-lg-6 ">
+                <input id="hotelPhoneNumber" class="input-text js-input" type="tel" name="hotelPhoneNumber" required maxlength="10" minlength="10">
+                <label class="label" for="hotelPhoneNumber">Phone Number</label>
+
+            </div>
+
+            <div class="form-field col-lg-12">
+                <input id="address" class="input-text js-input" type="text" name="hotelAddress" required>
+                <label class="label" for="address">The new Address </label>
+            </div>
+
+            <div class="form-field col-lg-12">
+                <input class="submit-btn" type="submit" value="Save the hotel">
+            </div>
+        </form>
+    </section>
+
+</body>
+</html>

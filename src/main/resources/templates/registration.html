@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+    <link rel="stylesheet" th:href="@{css/login.css}">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <title>Sign in</title>
+</head>
+
+<body th:style="'background: url(/image/register.jpg) no-repeat center center fixed;'" >
+<div class="main1">
+    <p class="sign" align="center">Register Now</p>
+    <form class="form1"  th:action="@{/process-Register}" th:object="${user}" method="post">
+
+        <div class="alert alert_error" role="alert" th:text="${failure}" th:if="${failure}"></div>
+        <div class="alert_success" role="alert" th:text="${registarionSucess}" th:if="${registarionSucess}"></div>
+
+
+        <input class="un " type="text" align="center" name="userName" placeholder="Username" required>
+
+        <input class="pass" type="password" align="center" name="password" placeholder="Password" required>
+
+        <input class="email" type="email" align="center" name="email" placeholder="Email Address" required
+               pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+
+        <input class="phone" type="tel" align="center" name="tel" placeholder="Phone Number" required>
+
+        <input  type="text" align="center" placeholder="Date of Birth" name="dateOfBirth" class="datepicker" required>
+
+        <button class="submit" align="center" >Sign in</button>
+
+        <p class="forgot" align="center">Go to login page</p>
+
+        <a class="submit" align="center" th:href="@{/backlogin}">Login</a>
+
+        <script>
+            $(document).ready(function () {
+                $('.datepicker').datepicker({
+                    format: 'dd-mm-yyyy',
+                    autoclose:true,
+                    endDate: "31-12-2003",
+                    maxDate: new Date(2003,12,31),
+                    minDate: new Date(1939,12,31)
+                }).on('changeDate', function (ev) {
+                    $(this).datepicker('hide');
+                });
+
+
+                $('.datepicker').keyup(function () {
+                    if (this.value.match(/[^0-9]/g)) {
+                        this.value = this.value.replace(/[^0-9^-]/g, '');
+                    }
+                });
+            });
+        </script>
+
+    </form>
+</div>
+</body>
+
+</html>
