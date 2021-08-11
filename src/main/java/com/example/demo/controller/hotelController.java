@@ -23,6 +23,8 @@ public class hotelController {
     @RequestMapping("/hotelform")
     public String addHotelPage(){
         return "hotelform";
+
+
     }
 
 

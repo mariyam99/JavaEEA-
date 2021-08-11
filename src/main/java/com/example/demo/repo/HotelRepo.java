@@ -13,7 +13,5 @@ public interface HotelRepo extends JpaRepository<Hotel,Long> {
 
 boolean existsByHotelName(String hotelName);
 
-    @Modifying
-    @Query("SELECT h.hotelName from Hotel h")
-    List<Hotel> findHotelByHotelName();
+
 }

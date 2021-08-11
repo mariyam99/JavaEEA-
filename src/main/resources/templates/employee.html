@@ -80,9 +80,9 @@
                 </div>
 
             <div class="form-field col-lg-12">
-                <label for="hotelID">Choose the Hotel:</label>
-                <select name="hotelID" id="hotelID">
-                    <option th:each="hotel: ${hotelList}" th:value="${hotel.hotelID}" th:text="${hotel.hotelName}"></option>
+                <label >Choose the Hotel:</label>
+                <select name="hotelID" id="hotelID" required>
+                    <option th:each= "hotel: ${hotels}" th:value="${hotel.hotelID}" th:text="${hotel.hotelName}"></option>
                 </select>
             </div>
 

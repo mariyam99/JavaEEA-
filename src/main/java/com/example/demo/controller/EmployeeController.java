@@ -27,7 +27,10 @@ public class EmployeeController {
 
 
     @RequestMapping("/employee")
-    public String registerPage(){
+    public String registerPage(Model model){
+
+        List<Hotel> hotelStringList= hotelRepo.findAll();
+        model.addAttribute("hotels",hotelStringList);
         return "employee";
     }
 
@@ -36,20 +39,19 @@ public class EmployeeController {
     public String addEmployee(@Valid @ModelAttribute(value = "employee") Employees employees, Model model)
     {
 
-        List<Hotel> hotelStringList= hotelRepo.findHotelByHotelName();
-        model.addAttribute("hotelList",hotelStringList);
+        List<Hotel> hotelStringList= hotelRepo.findAll();
+        model.addAttribute("hotels",hotelStringList);
 
         if(!employeeRepo.existsBynic(employees.getNic()))
         {
             employeeRepo.save(employees);
             model.addAttribute("Sucessfully","Sucessfully Regsitered!");
-            return "employee";
         }
         else{
             model.addAttribute("failure","Already existing employee!");
-            return "employee";
 
         }
+        return "employee";
 
     }
 
