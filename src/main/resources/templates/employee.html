@@ -30,7 +30,7 @@
 
     <section class="get-in-touch">
         <h1 class="title">New Employee? Get Registered them now!</h1>
-        <form class="contact-form row" th:action="@{/addEmployee}" method="post">
+        <form class="contact-form row" th:action="@{/addEmployee}" method="post" th:object="${employee}">
 
             <div class="alert alert_error" role="alert" th:text="${failure}" th:if="${failure}"></div>
             <div class="alert_success" role="alert" th:text="${Sucessfully}" th:if="${Sucessfully}"></div>
@@ -81,7 +81,7 @@
 
             <div class="form-field col-lg-12">
                 <label >Choose the Hotel:</label>
-                <select name="hotelID" id="hotelID" required>
+                <select name="hotelID" id="hotelID"  th:field="${hotels}" required >
                     <option th:each= "hotel: ${hotels}" th:value="${hotel.hotelID}" th:text="${hotel.hotelName}"></option>
                 </select>
             </div>
