@@ -17,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Email;
@@ -45,13 +46,21 @@ public class EmployeeController {
         return "employee";
     }
 
+
+
+
+
     @Transactional
-    @RequestMapping(value = "/addEmployee", method= RequestMethod.POST)
-    public String addEmployee(@Valid @ModelAttribute(value = "employee") Employees employees, Model model)
+    @RequestMapping(value = "/addEmployee", method= RequestMethod.GET)
+    public String addEmployee(Employees employees, Model model,
+                              @RequestParam(name = "id") Long id)
     {
 
         List<Hotel> hotelStringList= hotelRepo.findAll();
         model.addAttribute("hotels",hotelStringList);
+
+        Hotel hotel= hotelRepo.findByHotelID(id);
+        employees.setHotel(hotel);
 
         if(!employeeRepo.existsBynic(employees.getNic()))
         {

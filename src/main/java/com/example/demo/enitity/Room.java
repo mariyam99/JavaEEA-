@@ -32,7 +32,9 @@ public class Room {
     public double priceOfRoom;
     @Column(nullable = false)
     public String roomType;
-
+    @ManyToOne
+    @JoinColumn(name="hotelid")
+    private Hotel hotel;
 
 
 

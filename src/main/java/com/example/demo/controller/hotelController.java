@@ -24,7 +24,12 @@ public class hotelController {
     public String addHotelPage(){
         return "hotelform";
 
+    }
 
+    @RequestMapping("/adminHome")
+    public String employee()
+    {
+        return "adminHome";
     }
 
 
@@ -45,6 +50,15 @@ public class hotelController {
         }
 
     }
+
+    @RequestMapping("/viewHotel")
+    public String viewHotel()
+    {
+        return "viewHotel";
+    }
+
+
+
 
 
 
