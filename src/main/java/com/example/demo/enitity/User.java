@@ -49,6 +49,7 @@ public class User {
     private String role;
 
 
+
     public boolean validatePassword(String rawPassword, String encryptedPassword) {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         return encoder.matches(rawPassword, encryptedPassword);

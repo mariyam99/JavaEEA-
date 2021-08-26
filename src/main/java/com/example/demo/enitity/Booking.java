@@ -14,13 +14,13 @@ import java.util.Date;
 @NoArgsConstructor
 @Getter
 @Setter
-@Table(name = "user")
-public class Reservation {
+@Table(name = "booking")
+public class Booking {
 
     @Id
-    @Column(name = "reservation_id")
+    @Column(name = "booking_Id")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public Long reservationId;
+    public Long bookingId;
     @Column(nullable = false)
     public String specialRequest;
     @Column(nullable = false)

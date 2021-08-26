@@ -8,9 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -51,11 +49,30 @@ public class hotelController {
 
     }
 
+
     @RequestMapping("/viewHotel")
-    public String viewHotel()
-    {
+    public String listhotels(Model model){
+        model.addAttribute("hotellist", hotelrepo.findAll());
         return "viewHotel";
+
     }
+
+    @Transactional
+    @RequestMapping(value = "/deleteHotel",method = RequestMethod.POST)
+    public String deleteHotel(Hotel hotel,Model model)
+    {
+
+        Hotel hotel1= hotelrepo.getById(hotel.getHotelID());
+        try {
+        hotelrepo.deleteById(hotel1.getHotelID());
+            }
+        catch (Exception e) {
+            model.addAttribute("exception","Something has gone wrong");
+        }
+        model.addAttribute("successDeleteHotel", hotel1.getHotelName() + "\t removed from the list");
+        return "redirect:/viewHotel";
+    }
+
 
 
 

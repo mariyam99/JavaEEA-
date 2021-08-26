@@ -7,10 +7,14 @@ import com.example.demo.enitity.User;
 import com.example.demo.repo.EmployeeRepo;
 import com.example.demo.repo.HotelRepo;
 
+import org.passay.CharacterData;
+import org.passay.CharacterRule;
+import org.passay.PasswordGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -49,8 +53,7 @@ public class EmployeeController {
 
 
 
-
-    @Transactional
+        @Transactional
     @RequestMapping(value = "/addEmployee", method= RequestMethod.GET)
     public String addEmployee(Employees employees, Model model,
                               @RequestParam(name = "id") Long id)
@@ -84,8 +87,32 @@ public class EmployeeController {
 
         }
         return "employee";
+    }
+
+
+    @RequestMapping("/viewEmployee")
+    public String listemployees(Model model){
+
+        model.addAttribute("employeelist", employeeRepo.findAll());
+        return "viewEmployee";
 
     }
+
+    @Transactional
+    @RequestMapping(value = "/deleteEmployee",method = RequestMethod.POST)
+    public String deleteEmployee(Employees employees,Model model)
+    {
+        Employees employees1= employeeRepo.getById(employees.employeeId);
+        employeeRepo.deleteById(employees1.getEmployeeId());
+
+        model.addAttribute("sucessDeleteEmployee",employees1.getFirstName()+"\t removed from list");
+        return "redirect:/viewEmployee";
+
+    }
+
+
+
+
 
 
 

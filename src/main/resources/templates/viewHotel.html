@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" th:href="@{css/viewdata}">
+
+    <div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="display:none" id="mySidebar">
+        <button class="w3-bar-item w3-button w3-large"
+                onclick="w3_close()">Close &times;</button>
+        <a th:href="@{/adminHome}" class="w3-bar-item w3-button">Home</a>
+        <a th:href="@{/hotelform}" class="w3-bar-item w3-button">Add Hotel</a>
+        <a th:href="@{/viewHotel}" class="w3-bar-item w3-button">View Hotel</a>
+        <a th:href="@{/viewEmployee}" class="w3-bar-item w3-button">View Employee</a>
+    </div>
+
+</head>
+<body>
+
+
+<div id="main">
+
+    <div class="w3-teal">
+        <button id="openNav" class="w3-button w3-teal w3-xlarge" onclick="w3_open()">&#9776;</button>
+        <div class="w3-container">
+            <h1>My Page</h1>
+        </div>
+    </div>
+
+    <div class="container">
+    <div class="title">
+        <h3>Tables</h3>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h4>Simple Table</h4>
+        </div>
+
+
+
+        <div class="col-lg-8 col-md-10 ml-auto mr-auto">
+            <h4><small>Simple With Actions</small></h4>
+            <div class="table-responsive" th:if="${ not#lists.isEmpty(hotellist)}">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th class="text-center">Hotel Name</th>
+                        <th>City</th>
+                        <th>Phone Number</th>
+                        <th class="text-right">Address</th>
+                        <th class="text-right">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="hotellist : ${hotellist}">
+                        <td class="text-center" th:text="${hotellist.hotelName}"></td>
+                        <td th:text="${hotellist.hotelCity}"></td>
+                        <td th:text="${hotellist.hotelPhoneNumber}"></td>
+                        <td th:text="${hotellist.hotelAddress}"  class="text-right"></td>
+                        <td class="td-actions text-right">
+
+                            <button type="button" rel="tooltip" class="btn btn-success btn-just-icon btn-sm" data-original-title="" title=""
+                            >
+                                <i class="material-icons">edit</i>
+                            </button>
+
+                            <form th:action="@{/deleteHotel}"  method="POST">
+
+                                <div class="alert_success" role="alert" th:text="${exception}" th:if="${exception}"></div>
+                                <div class="alert_success" role="alert" th:text="${success}" th:if="${success}"></div>
+
+
+                                <input type="hidden" name="hotelID" th:value="${hotellist.hotelID}">
+                            <button type="submit" rel="tooltip" class="btn btn-danger btn-just-icon btn-sm"
+                            >
+                            Delete
+                            </button>
+                            </form>
+                        </td>
+                    </tr>
+                    <tr>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+</div>
+</div>
+
+<script>
+    function w3_open() {
+        document.getElementById("main").style.marginLeft = "25%";
+        document.getElementById("mySidebar").style.width = "25%";
+        document.getElementById("mySidebar").style.display = "block";
+        document.getElementById("openNav").style.display = 'none';
+    }
+    function w3_close() {
+        document.getElementById("main").style.marginLeft = "0%";
+        document.getElementById("mySidebar").style.display = "none";
+        document.getElementById("openNav").style.display = "inline-block";
+    }
+</script>
+</div>
+
+</body>
+</html>

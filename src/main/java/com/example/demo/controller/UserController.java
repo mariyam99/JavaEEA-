@@ -87,9 +87,15 @@ public class UserController {
 
                     if (userRole.getRole().equals("ADMIN")) {
                         return "adminHome";
-                    } else {
+
+                    } else if (userRole.getRole().equals("MANAGER")) {
+                        return "managerHome";
+                    }
+                    else{
+
                         return "customerHome";
                     }
+
                 } else {
                     model.addAttribute("passwordIncorrect", "Entered Wrong Password");
                     return "homepage";
