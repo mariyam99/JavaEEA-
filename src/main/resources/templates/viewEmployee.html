@@ -50,14 +50,14 @@
                             <th class="text-center">First Name</th>
                             <th>Last Name</th>
                             <th>Address</th>
-                            <th class="text-right">Salary</th>
-                            <th class="text-right">NIC</th>
-                            <th class="text-right">Phone Number</th>
-                            <th class="text-right">Email</th>
-                            <th class="text-right">Role</th>
-                            <th class="text-right">Works at</th>
-                            <th class="text-right">Remove</th>
-                            <th class="text-right">Update</th>
+                            <th>Salary</th>
+                            <th>NIC</th>
+                            <th>Phone Number</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>Works at</th>
+                            <th >Remove</th>
+                            <th >Update</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -65,10 +65,10 @@
                             <td class="text-center" th:text="${employeeL.firstName}"></td>
                             <td th:text="${employeeL.lastName}"></td>
                             <td th:text="${employeeL.address}"></td>
-                            <td th:text="${employeeL.salary}"  class="text-right"></td>
-                            <td th:text="${employeeL.nic}"  class="text-right"></td>
-                            <td th:text="${employeeL.phoneNumber}"  class="text-right"></td>
-                            <td th:text="${employeeL.emailEmployee}"  class="text-right"></td>
+                            <td th:text="${employeeL.salary}"  ></td>
+                            <td th:text="${employeeL.nic}" ></td>
+                            <td th:text="${employeeL.phoneNumber}"  ></td>
+                            <td th:text="${employeeL.emailEmployee}" ></td>
                             <td th:text="${employeeL.employeeRole}"  class="text-right"></td>
                             <td th:text="${employeeL.hotel.hotelName}"  class="text-right"></td>
 
@@ -94,13 +94,14 @@
 
                                     <input type="hidden"  name="employeeId" th:value="${employeeL.employeeId}" />
 
-                                    <input type="text" id="address" name="address" th:placeholder="Address"><br />
+                                    <input type="text" id="employeeRole" name="employeeRole" placeholder="Updated Role"><br />
 
-                                    <input type="text"  id="phoneNumber"  name="phoneNumber" th:placeholder="Phone Number"><br />
+                                    <input type="text"  id="phoneNumber"  name="phoneNumber" placeholder="Updated Phone Number"><br />
 
+                                    <input type="text"  id="salary"  name="salary" placeholder="Updated Salary"><br />
 
                                     <button type="submit" rel="tooltip" class="btn btn-success btn-just-icon btn-sm" data-original-title="" title="">
-                                        <i class="material-icons">Update</i>
+                                        <a class="material-icons" type="submit">Update</a>
                                     </button>
                                 </form>
 

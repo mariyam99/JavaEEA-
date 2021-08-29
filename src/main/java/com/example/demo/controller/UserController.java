@@ -104,6 +104,25 @@ public class UserController {
 
     }
 
+    @RequestMapping("/logout")
+    public String logout(HttpServletRequest request)
+    {
+        request.getSession().invalidate();
+        return "homepage";
+
+    }
+
+    @RequestMapping("/updateProfile")
+    public String updateProfile()
+    {
+        return "updateProfile";
+    }
+
+
+
+
+
+
 
 
 

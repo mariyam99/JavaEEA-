@@ -23,9 +23,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import java.util.List;
+import java.util.Optional;
 
 
 @Controller
@@ -53,8 +57,8 @@ public class EmployeeController {
 
 
 
-        @Transactional
-    @RequestMapping(value = "/addEmployee", method= RequestMethod.GET)
+    @Transactional
+    @RequestMapping(value = "/addEmployee", method= RequestMethod.POST)
     public String addEmployee(Employees employees, Model model,
                               @RequestParam(name = "id") Long id)
     {
@@ -110,6 +114,47 @@ public class EmployeeController {
 
     }
 
+    @Transactional
+    @RequestMapping(value = "/updateEmployee",method = RequestMethod.POST)
+    public String updateEmployee(Employees employees, Model model, HttpServletRequest request,
+                                 @RequestParam(name = "id") Long id)
+    {
+
+        if (employees.getEmployeeRole() == "")
+        { employees.setEmployeeRole(null); }
+
+        if(employees.getAddress() == "")
+        {
+            employees.setAddress(null);
+        }
+
+        if(employees.getPhoneNumber()=="")
+        {
+            employees.setPhoneNumber(null);
+        }
+
+
+        if(employees.getEmployeeRole() != null)
+        {
+            List<Employees> employeesList= employeeRepo.existsByEmployeeRole(employees.getEmployeeRole());
+            if(!employeesList.isEmpty())
+            {
+                model.addAttribute("invalid","The role is already exists to the user");
+                return "redirect:/viewEmployee";
+
+            }
+            else{
+                employees.setEmployeeRole(employees.getEmployeeRole());
+            }
+        }
+
+        employeeRepo.updateEmployee(employees);
+        model.addAttribute("sucess","Updated sucessfully");
+        return "redirect:/viewEmployee";
+
+
+
+    }
 
 
 

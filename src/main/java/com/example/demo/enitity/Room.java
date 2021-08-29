@@ -17,7 +17,7 @@ import javax.persistence.*;
 public class Room {
 
     @Id
-    @Column(name = "room_id")
+    @Column(name = "room_id",unique = true)
     @GeneratedValue(strategy = GenerationType.AUTO)
     public Long roomId;
     @Column(nullable = false)
