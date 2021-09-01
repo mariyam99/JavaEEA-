@@ -83,7 +83,7 @@ public class RoomController {
     @RequestMapping(value = "/deleteRoom",method = RequestMethod.POST)
     public String deleteRoom(Room room, Model model)
     {
-        Room room1= roomRepo.getById(room.roomId);
+        Room room1= roomRepo.getById(room.getRoomId());
         roomRepo.deleteById(room1.getRoomId());
 
         model.addAttribute("sucessDeleteRoom",room1.getRoomNumber()+ "\t has been removed from " +room1.getHotel()+"\t removed from list");
@@ -91,7 +91,25 @@ public class RoomController {
 
     }
 
+    @RequestMapping(value = "/updateRoom",method = RequestMethod.POST)
+    public  String updateRoomStatus(Room room,Model model)
+    {
+         Room room1=roomRepo.getById(room.getRoomId());
 
+         if(room.getRoomId() != null)
+         {
+            roomRepo.updateRoom(room1.getStatus(),room1.getRoomId());
+            room1.setStatus(room.getStatus());
+            model.addAttribute("sucessRoom","Updateed sucessfully the room status");
+            return "redirect:/viewRoom";
+         }
+        else{
+            model.addAttribute("invalid","Room not found");
+             return "redirect:/viewRoom";
+         }
+
+
+    }
 
 
 

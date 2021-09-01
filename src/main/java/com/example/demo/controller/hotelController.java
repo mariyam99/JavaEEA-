@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 public class hotelController {
@@ -73,6 +74,28 @@ public class hotelController {
         return "redirect:/viewHotel";
     }
 
+
+        @Transactional
+        @RequestMapping(value = "/updateHotel",method = RequestMethod.POST)
+        public String updateHotel(Hotel hotel,Model model)
+        {
+            Hotel hotel1= hotelrepo.getById(hotel.getHotelID());
+
+            if(hotel.getHotelID()!= null)
+            {
+                hotelrepo.updateHotel(hotel1.getHotelPhoneNumber(),hotel1.getHotelID());
+                hotel1.setHotelPhoneNumber(hotel.getHotelPhoneNumber());
+                model.addAttribute("sucessfully","Updated sucessfully");
+                return "redirect:/viewHotel";
+            }
+            else
+            {
+                model.addAttribute("invalid","Hotel not found");
+                return "redirect:/viewHotel";
+            }
+
+
+        }
 
 
 

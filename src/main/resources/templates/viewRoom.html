@@ -52,6 +52,9 @@
                             <th>Price</th>
                             <th>Status</th>
                             <th>Hotel</th>
+                            <th class="text-center">Update</th>
+                            <th class="text-center">Delete</th>
+
 
                         </tr>
                         </thead>
@@ -67,12 +70,25 @@
 
                             <td class="td-actions text-right">
 
-                                <button type="button" rel="tooltip" class="btn btn-success btn-just-icon btn-sm" data-original-title="" title=""
-                                >
-                                    <i class="material-icons">edit</i>
-                                </button>
+                                <form th:action="@{/updateRoom}" method="post">
 
-                                <form th:action="@{/deleteRoom}"  method="POST">
+                                    <div class="alert_success" role="alert" th:text="${sucessRoom}" th:if="${sucessRoom}"></div>
+
+                                    <input type="hidden" name="roomId" th:value="${roomL.roomId}">
+                                    <input type="radio" id="status" name="status" th:value="${roomL.status}">
+                                     <label for="status">Active</label><br><br />
+                                    <input type="radio" id="status1" name="status" th:value="${roomL.status}">
+                                    <label for="status">Full</label><br><br />
+                                    <input type="radio" id="status2" name="status" th:value="${roomL.status}">
+                                    <label for="status">Repair</label><br><br />
+                                    <button type="submit" rel="tooltip" class="btn btn-success btn-just-icon btn-sm" data-original-title="" title="">
+                                    Update
+                                </button>
+                                </form>
+                            </td>
+
+                            <td class="td-actions text-right">
+                            <form th:action="@{/deleteRoom}"  method="POST">
 
                                     <div class="alert_success" role="alert" th:text="${sucessDeleteRoom}" th:if="${sucessDeleteRoom}"></div>
 

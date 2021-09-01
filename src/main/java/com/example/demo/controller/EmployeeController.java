@@ -116,16 +116,14 @@ public class EmployeeController {
 
     @Transactional
     @RequestMapping(value = "/updateEmployee",method = RequestMethod.POST)
-    public String updateEmployee(Employees employees, Model model, HttpServletRequest request,
-                                 @RequestParam(name = "id") Long id)
+    public String updateEmployee(Employees employees, Model model)
     {
 
-        if (employees.getEmployeeRole() == "")
-        { employees.setEmployeeRole(null); }
+        Employees employees1=employeeRepo.getById(employees.getEmployeeId());
 
-        if(employees.getAddress() == "")
+        if(employees.getEmployeeRole()=="")
         {
-            employees.setAddress(null);
+            employees.setEmployeeRole(null);
         }
 
         if(employees.getPhoneNumber()=="")
@@ -133,24 +131,31 @@ public class EmployeeController {
             employees.setPhoneNumber(null);
         }
 
-
-        if(employees.getEmployeeRole() != null)
+        if(employees.getAddress() == "")
         {
-            List<Employees> employeesList= employeeRepo.existsByEmployeeRole(employees.getEmployeeRole());
-            if(!employeesList.isEmpty())
-            {
-                model.addAttribute("invalid","The role is already exists to the user");
-                return "redirect:/viewEmployee";
-
-            }
-            else{
-                employees.setEmployeeRole(employees.getEmployeeRole());
-            }
+                employees.setAddress(null);
         }
 
-        employeeRepo.updateEmployee(employees);
-        model.addAttribute("sucess","Updated sucessfully");
-        return "redirect:/viewEmployee";
+        if(employees.getEmployeeRole() != null) {
+                employees1.setEmployeeRole(employees.getEmployeeRole());
+
+        }
+            if(employees.getPhoneNumber() != null)
+            {
+                employees1.setPhoneNumber(employees.getPhoneNumber());
+            }
+
+            if(employees.getAddress()!= null)
+            {
+                employees1.setAddress(employees.getAddress());
+            }
+
+            employeeRepo.updateEmployee(employees1);
+            model.addAttribute("sucessUpdated","Profile updated");
+            return "redirect:/viewEmployee";
+
+        }
+
 
 
 
@@ -161,4 +166,4 @@ public class EmployeeController {
 
 
 
-}
+

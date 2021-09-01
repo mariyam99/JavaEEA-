@@ -19,19 +19,19 @@ public class Room {
     @Id
     @Column(name = "room_id",unique = true)
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public Long roomId;
+    private Long roomId;
     @Column(nullable = false)
-    public Integer roomNumber;
+    private Integer roomNumber;
     @Column(nullable = false)
-    public Integer roomFloor;
+    private Integer roomFloor;
     @Column(nullable = false)
-    public String status;
+    private String status;
     @Column(nullable = false)
-    public String roomDetails;
+    private String roomDetails;
     @Column(nullable = false)
-    public double priceOfRoom;
+    private double priceOfRoom;
     @Column(nullable = false)
-    public String roomType;
+    private String roomType;
     @ManyToOne
     @JoinColumn(name="hotelid")
     private Hotel hotel;

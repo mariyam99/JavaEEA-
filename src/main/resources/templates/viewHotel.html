@@ -54,7 +54,9 @@
                         <th>City</th>
                         <th>Phone Number</th>
                         <th class="text-right">Address</th>
-                        <th class="text-right">Actions</th>
+                        <th class="text-right">Update</th>
+                        <th class="text-right">Remove</th>
+
                     </tr>
                     </thead>
                     <tbody>
@@ -63,26 +65,42 @@
                         <td th:text="${hotellist.hotelCity}"></td>
                         <td th:text="${hotellist.hotelPhoneNumber}"></td>
                         <td th:text="${hotellist.hotelAddress}"  class="text-right"></td>
+
+
+
                         <td class="td-actions text-right">
-
-                            <button type="button" rel="tooltip" class="btn btn-success btn-just-icon btn-sm" data-original-title="" title=""
-                            >
-                                <i class="material-icons">edit</i>
-                            </button>
-
-                            <form th:action="@{/deleteHotel}"  method="POST">
-
-                                <div class="alert_success" role="alert" th:text="${exception}" th:if="${exception}"></div>
-                                <div class="alert_success" role="alert" th:text="${success}" th:if="${success}"></div>
-
+                            <form th:action="@{/updateHotel}" method="POST">
 
                                 <input type="hidden" name="hotelID" th:value="${hotellist.hotelID}">
-                            <button type="submit" rel="tooltip" class="btn btn-danger btn-just-icon btn-sm"
-                            >
-                            Delete
+                                <div class="alert_success" role="alert" th:text="${sucessfully}" th:if="${sucessfully}"></div>
+
+                                <div class="alert alert_error" role="alert" th:text="${invalid}" th:if="${invalid}"></div>
+
+                                <input type="text"  id="hotelPhoneNumber"  name="hotelPhoneNumber" placeholder="Updated Phone Number" required><br />
+
+
+                                <button type="submit" rel="tooltip" class="btn btn-success btn-just-icon btn-sm" data-original-title="" title="">
+                                Update
                             </button>
                             </form>
                         </td>
+
+                        <td class="td-actions text-right">
+
+                        <form th:action="@{/deleteHotel}"  method="POST">
+
+                            <div class="alert_success" role="alert" th:text="${successDeleteHotel}" th:if="${successDeleteHotel}"></div>
+
+
+                            <input type="hidden" name="hotelID" th:value="${hotellist.hotelID}">
+                            <button type="submit" rel="tooltip" class="btn btn-danger btn-just-icon btn-sm"
+                            >
+                                Delete
+                            </button>
+                        </form>
+                        </td>
+
+
                     </tr>
                     <tr>
                     </tr>

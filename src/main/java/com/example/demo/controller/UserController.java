@@ -11,10 +11,12 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 public class UserController {
@@ -112,13 +114,99 @@ public class UserController {
 
     }
 
+    @RequestMapping("/home")
+    public String customerHomepage()
+    {
+        return "customerHome";
+    }
+
+
     @RequestMapping("/updateProfile")
     public String updateProfile()
     {
+
+
         return "updateProfile";
     }
 
 
+
+    @RequestMapping(value = "/updateInfo",method = RequestMethod.POST)
+    public String updateDeatils(User user, HttpServletRequest request,Model model,
+                                @RequestParam(name = "oldPassword",required = false) String oldPassword,
+                                @RequestParam(name = "newPassword",required = false)String newPassword)
+    {
+
+
+        if(user.getEmail()=="")
+        {
+            user.setEmail(null);
+        }
+
+        if(user.getTel()=="")
+        {
+            user.setTel(null);
+        }
+
+
+        if (oldPassword=="" && newPassword=="")
+        {
+            oldPassword = null;
+            newPassword= null;
+        }
+
+        HttpSession session =request.getSession();
+        String username=(String)session.getAttribute("userName");
+
+        if(userRepo.existsByUserName(username))
+        {
+            User user1=userRepo.findByUserName(username);
+            model.addAttribute("username",user1);
+
+            if(user.getEmail()!= null)
+            {
+                user1.setEmail(user.getEmail());
+            }
+
+            if(user.getTel() != null)
+            {
+                user1.setTel(user.getTel());
+            }
+
+            if(oldPassword != null && newPassword != null)
+            {
+                if((user.validatePassword(oldPassword,user.getPassword())) && (user.getUserName().equals(username)))
+                {
+                    String encryptedPassword = new BCryptPasswordEncoder().encode(newPassword);
+                    user1.setPassword(encryptedPassword);
+                    model.addAttribute("sucessPassword","Password was changed");
+                }
+                else
+                {
+                    model.addAttribute("invalid","entered old password");
+                    return "redirect:/updateProfile";
+                }
+
+            }
+            userRepo.updateUserProfile(user1);
+            model.addAttribute("sucess","Profile update sucefully");
+            return "redirect:/updateProfile";
+
+
+        }
+        else
+        {
+            model.addAttribute("invalid","user not found.");
+            return "redirect:/updateProfile";
+        }
+
+    }
+
+    @RequestMapping("/updateManagerProfile")
+    public String updateManagerProfile()
+    {
+        return "updateManagerProfile";
+    }
 
 
 

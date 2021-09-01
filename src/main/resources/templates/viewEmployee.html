@@ -72,6 +72,10 @@
                             <td th:text="${employeeL.employeeRole}"  class="text-right"></td>
                             <td th:text="${employeeL.hotel.hotelName}"  class="text-right"></td>
 
+
+
+
+
                             <td class="td-actions text-right">
 
 
@@ -88,9 +92,14 @@
                                 </form>
                             </td>
 
+
+
+
                             <td class="td-actions text-right">
 
                                 <form th:action="@{/updateEmployee}" th:method="POST">
+
+                                    <div class="alert_success" role="alert" th:text="${sucessUpdated}" th:if="${sucessUpdated}"></div>
 
                                     <input type="hidden"  name="employeeId" th:value="${employeeL.employeeId}" />
 
@@ -98,7 +107,7 @@
 
                                     <input type="text"  id="phoneNumber"  name="phoneNumber" placeholder="Updated Phone Number"><br />
 
-                                    <input type="text"  id="salary"  name="salary" placeholder="Updated Salary"><br />
+                                    <input type="text"  id="address"  name="address" placeholder="Updated Address"><br />
 
                                     <button type="submit" rel="tooltip" class="btn btn-success btn-just-icon btn-sm" data-original-title="" title="">
                                         <a class="material-icons" type="submit">Update</a>

@@ -17,12 +17,11 @@ public interface EmployeeRepo extends JpaRepository<Employees,Long> {
 
     @Modifying
     @Transactional
-    @Query("UPDATE Employees employees SET employees.address=:#{#employees.address},"+
+    @Query("UPDATE Employees employees SET employees.phoneNumber=:#{#employees.phoneNumber},"+
     "employees.employeeRole=:#{#employees.employeeRole},"+
-    "employees.salary=:#{#employees.salary}" +
+    "employees.address=:#{#employees.address}" +
     " WHERE employees.employeeId=:#{#employees.employeeId}")
     int updateEmployee(Employees employees);
 
 
-    List<Employees> existsByEmployeeRole(String employeeRole);
 }
