@@ -1,6 +1,8 @@
 package com.example.demo.controller;
 
+import com.example.demo.enitity.Hotel;
 import com.example.demo.enitity.User;
+import com.example.demo.repo.HotelRepo;
 import com.example.demo.repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -23,6 +25,9 @@ public class UserController {
 
     @Autowired
     private UserRepo userRepo;
+
+    @Autowired
+    private HotelRepo hotelRepo;
 
     @RequestMapping("/")
     public String index(){
@@ -79,6 +84,7 @@ public class UserController {
                 return "homepage";
             } else {
                 User userRole = userRepo.findByUserName(user.getUserName());
+
                 if ((userRole.validatePassword(user.getPassword(), userRole.getPassword())) && (userRole.getUserName().equals(user.getUserName()))) {
                     HttpSession session = request.getSession();
                     session.setAttribute("userName", userRole.getUserName());
@@ -115,8 +121,10 @@ public class UserController {
     }
 
     @RequestMapping("/home")
-    public String customerHomepage()
+    public String customerHomepage(Model model)
     {
+        List<Hotel> hotelStringList= hotelRepo.findAll();
+        model.addAttribute("hotelL",hotelStringList);
         return "customerHome";
     }
 
@@ -124,8 +132,6 @@ public class UserController {
     @RequestMapping("/updateProfile")
     public String updateProfile()
     {
-
-
         return "updateProfile";
     }
 

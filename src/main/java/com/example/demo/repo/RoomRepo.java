@@ -9,6 +9,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Repository
 public interface RoomRepo extends JpaRepository<Room,Long> {
 
@@ -21,6 +23,10 @@ public interface RoomRepo extends JpaRepository<Room,Long> {
     @Modifying
     @Query("UPDATE Room room SET room.status=:status where room.roomId=:id")
     int updateRoom(String status,Long id);
+
+
+    @Query(value = "SELECT * FROM room WHERE status LIKE 'AVAILABLE'",nativeQuery = true)
+    List<Room> findRoom(Room room);
 
 
 }
