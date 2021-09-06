@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" th:href="@{css/viewdata}">
+
+    <div class="w3-bar w3-white w3-large">
+    <a th:href="@{/home}" class="w3-bar-item w3-button w3-red w3-mobile"><i class="fa fa-bed w3-margin-right"></i>Hotel</a>
+        <a th:href="@{/viewBook}" class="w3-bar-item w3-button w3-mobile">My Bookings</a>
+        <a th:href="@{/about}" class="w3-bar-item w3-button w3-mobile">About Us</a>
+    <a href="#contact" class="w3-bar-item w3-button w3-mobile">Contact</a>
+    <a href="#contact" class="w3-bar-item w3-button w3-right w3-light-grey w3-mobile">Logout</a>
+    </div>
+
+</head>
+<body>
+
+<div class="container">
+
+    <div class="row">
+
+
+        <div class="col-lg-8 col-md-10 ml-auto mr-auto">
+            <div class="table-responsive" th:if="${ not#lists.isEmpty(booking)}">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th class="text-center">Booking Id</th>
+                        <th>Room Type</th>
+                        <th>Check In </th>
+                        <th>Check Out</th>
+                        <th>Special Request</th>
+                        <th>Hotel</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="bookL : ${booking}">
+                        <td class="text-center" th:text="${bookL.room.roomType}">
+                        <td class="text-center" th:text="${bookL.startDate}">
+                        <td class="text-center" th:text="${bookL.endDate}"></td>
+                        <td class="text-center" th:text="${bookL.specialRequest}">
+                        <td class="text-center" th:text="${bookL.room.hotel.hotelName}">
+
+                    </tr>
+                    <tr>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+</body>
+</html>

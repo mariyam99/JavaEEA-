@@ -1,10 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" th:href="@{css/employeeForm.css}">
+    <!-- Navigation Bar -->
+    <div class="w3-bar w3-white w3-large">
+        <a th:href="@{/home}" class="w3-bar-item w3-button w3-red w3-mobile"><i class="fa fa-bed w3-margin-right"></i>Hotel</a>
+        <a href="#rooms" class="w3-bar-item w3-button w3-mobile">Rooms</a>
+        <a href="#about" class="w3-bar-item w3-button w3-mobile">About</a>
+        <a href="#contact" class="w3-bar-item w3-button w3-mobile">Contact</a>
+        <a href="#contact" class="w3-bar-item w3-button w3-right w3-light-grey w3-mobile">Logout</a>
+    </div>
 </head>
 <body>
+<form class="contact-form row" th:action="@{/addReservation}" method="post">
+
+<div class="w3-card-4" style="width:100%">
+        <header class="w3-container w3-white">
+            <h2>Reservation Confirmation</h2>
+            <input type="hidden" name="roomId" th:value="${room.roomId}">
+            <input type="hidden" name="startDate" th:value="${start}">
+            <input type="hidden" name="endDate" th:value="${end}">
+            <h3 th:text="${room.roomType}"></h3>
+            <h4 th:text="${room.roomDetails}"></h4>
+            <h4>Room Floor:</h4><h4 th:text="${room.roomFloor}"></h4>
+            <h4>Total Cost:</h4><h4 th:text="${room.priceOfRoom}"></h4>
+            <h3 th:text="${room.hotel.hotelName}"></h3>
+
+        </header>
+</div>
+
+<section class="get-in-touch">
+
+        <div class="alert alert_error" role="alert" th:text="${invalid}" th:if="${invalid}"></div>
+        <div class="alert_success" role="alert" th:text="${Sucessfully}" th:if="${Sucessfully}"></div>
+
+        <div class="form-field col-lg-6">
+            <input id="specialRequest" class="input-text js-input" type="text" name="specialRequest">
+            <label class="label" for="specialRequest">Special Request</label>
+        </div>
+
+        <div class="form-field col-lg-12">
+            <input class="submit-btn" type="submit" value="Confirm">
+
+        </div>
+        </div>
+</section>
+
+</form>
 
 </body>
 </html>

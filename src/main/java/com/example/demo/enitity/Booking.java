@@ -25,12 +25,10 @@ public class Booking {
     @Column(nullable = false)
     public String specialRequest;
     @Column(nullable = false)
-    @DateTimeFormat(pattern = "yyyy-mm-dd")
-    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     public Date startDate;
     @Column(nullable = false)
-    @DateTimeFormat(pattern = "yyyy-mm-dd")
-    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     public Date endDate;
     @ManyToOne
     @JoinColumn(name="user_id")
@@ -39,9 +37,5 @@ public class Booking {
     @JoinColumn(name="room_id")
     private Room room;
 
-    public Booking(Long bookingId, Date startDate, Date endDate) {
-        this.bookingId = bookingId;
-        this.startDate = startDate;
-        this.endDate = endDate;
-    }
+
 }

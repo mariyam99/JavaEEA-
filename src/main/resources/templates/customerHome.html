@@ -16,16 +16,14 @@
     <!-- Navigation Bar -->
     <div class="w3-bar w3-white w3-large">
         <a th:href="@{/home}" class="w3-bar-item w3-button w3-red w3-mobile"><i class="fa fa-bed w3-margin-right"></i>Hotel</a>
-        <a href="#rooms" class="w3-bar-item w3-button w3-mobile">Rooms</a>
-        <a href="#about" class="w3-bar-item w3-button w3-mobile">About</a>
-        <a href="#contact" class="w3-bar-item w3-button w3-mobile">Contact</a>
-        <a href="#contact" class="w3-bar-item w3-button w3-right w3-light-grey w3-mobile">Book Now</a>
+        <a th:href="@{/viewBook}" class="w3-bar-item w3-button w3-mobile">My Bookings</a>
+        <a th:href="@{/about}" class="w3-bar-item w3-button w3-mobile">About Us</a>
+        <a href="#contact" class="w3-bar-item w3-button w3-mobile">Update Profile</a>
+        <a th:href="@{/logout}" class="w3-bar-item w3-button w3-right w3-light-grey w3-mobile">Logout</a>
     </div>
 </head>
 
-
-
-<body >
+<body>
 
 
 <div class="w3-container w3-margin-top" id="rooms">
@@ -34,7 +32,7 @@
 </div>
 
 <div class="w3-row-padding">
-    <form th:action="@{/searchRoom}" th:method="POST"   >
+    <form th:action="@{/searchRoom}" th:method="POST">
     <div class="w3-col m3">
         <label><i class="fa fa-calendar-o"></i> Check In</label>
         <input class="w3-input w3-border" type="text"  placeholder="DD MM YYYY"  id="txtCheckin" name="startDate" >
@@ -45,7 +43,7 @@
     </div>
 
     <div class="w3-col m3">
-        <button class="w3-button w3-block w3-black">Search</button>
+        <button class="w3-button w3-block w3-black w3-border-red">Search</button>
     </div>
     </form>
 </div>
@@ -106,7 +104,7 @@
         $("#txtCheckin").datepicker({
             dateFormat: "yy-mm-dd",
             minDate:"today",
-            maxDate:"+3W",
+            maxDate:"+3M",
             onSelect: function (date) {
                 var date2 = $('#txtCheckin').datepicker('getDate');
                 date2.setDate(date2.getDate() + 1);

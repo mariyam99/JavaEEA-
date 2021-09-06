@@ -90,7 +90,7 @@ public class UserController {
                     session.setAttribute("userName", userRole.getUserName());
                     session.setMaxInactiveInterval(60 * 60);
 
-                    model.addAttribute("user", "Welcome");
+                    model.addAttribute("user", userRole.getUserName() );
 
 
                     if (userRole.getRole().equals("ADMIN")) {
@@ -130,8 +130,11 @@ public class UserController {
 
 
     @RequestMapping("/updateProfile")
-    public String updateProfile()
+    public String updateProfile(Model model,HttpServletRequest request)
     {
+//        HttpSession session = request.getSession();
+
+
         return "updateProfile";
     }
 
@@ -198,7 +201,6 @@ public class UserController {
             model.addAttribute("sucess","Profile update sucefully");
             return "redirect:/updateProfile";
 
-
         }
         else
         {
@@ -214,7 +216,17 @@ public class UserController {
         return "updateManagerProfile";
     }
 
+    @RequestMapping("/managerHome")
+    public String managerHome()
+    {
+        return "managerHome";
+    }
 
+    @RequestMapping("/about")
+    public String aboutUs()
+    {
+        return "aboutUs";
+    }
 
 
 

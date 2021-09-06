@@ -8,10 +8,10 @@
     <!-- Navigation Bar -->
     <div class="w3-bar w3-white w3-large">
         <a th:href="@{/home}" class="w3-bar-item w3-button w3-red w3-mobile"><i class="fa fa-bed w3-margin-right"></i>Hotel</a>
-        <a href="#rooms" class="w3-bar-item w3-button w3-mobile">Rooms</a>
-        <a href="#about" class="w3-bar-item w3-button w3-mobile">About</a>
+        <a th:href="@{/viewBook}" class="w3-bar-item w3-button w3-mobile">My Bookings</a>
+        <a th:href="@{/about}" class="w3-bar-item w3-button w3-mobile">About Us</a>
         <a href="#contact" class="w3-bar-item w3-button w3-mobile">Contact</a>
-        <a href="#contact" class="w3-bar-item w3-button w3-right w3-light-grey w3-mobile">Book Now</a>
+        <a href="#contact" class="w3-bar-item w3-button w3-right w3-light-grey w3-mobile">Logout</a>
     </div>
 
 </head>
@@ -19,16 +19,20 @@
 
 <div class="w3-container" th:each="room :${rooms}" th:style="'background: url(/image/register.jpg) no-repeat center center fixed;'">
 
-    <div class="w3-card-4" style="width:100%"  >
-        <form th:action="@{/reservation}">
+    <div class="w3-card-4" style="width:100%">
+        <form th:action="@{/reservation}" th:method="POST">
         <header class="w3-container w3-white">
 
             <input type="hidden" name="roomID" th:value="${room.roomId}">
+            <input type="hidden" name="startDate" th:value="${start}">
+            <input type="hidden" name="endDate" th:value="${end}">
             <h3 th:text="${room.roomType}"></h3>
             <h4 th:text="${room.roomDetails}"></h4>
             <h4>Room Floor:</h4><h4 th:text="${room.roomFloor}"></h4>
+            <h4 th:text="${room.priceOfRoom}"> ($)</h4>
             <h4>Hotel :</h4>
             <h3 th:text="${room.hotel.hotelName}"></h3>
+
         </header>
         <button class="w3-button w3-block w3-deep-orange" type="submit">Reserve Now</button>
         </form>
@@ -37,12 +41,6 @@
 
 </div>
 </div>
-
-
-
-
-
-
 
 </body>
 </html>
