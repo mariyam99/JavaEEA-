@@ -132,7 +132,11 @@ public class UserController {
     @RequestMapping("/updateProfile")
     public String updateProfile(Model model,HttpServletRequest request)
     {
-//        HttpSession session = request.getSession();
+        HttpSession session = request.getSession();
+        String username=(String)session.getAttribute("userName");
+
+        User user= userRepo.findByUserName(username);
+        model.addAttribute("user",user);
 
 
         return "updateProfile";
@@ -211,8 +215,13 @@ public class UserController {
     }
 
     @RequestMapping("/updateManagerProfile")
-    public String updateManagerProfile()
+    public String updateManagerProfile(Model model,HttpServletRequest request)
     {
+        HttpSession session = request.getSession();
+        String username=(String)session.getAttribute("userName");
+
+        User user= userRepo.findByUserName(username);
+        model.addAttribute("user",user);
         return "updateManagerProfile";
     }
 
@@ -228,8 +237,12 @@ public class UserController {
         return "aboutUs";
     }
 
+    @RequestMapping("/customerUpdate")
+    public String customerUpdateProfile(Model model,HttpServletRequest request)
+    {
 
-
+        return "updateCustomerProfile";
+    }
 
 
 }
