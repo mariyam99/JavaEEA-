@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -41,7 +42,7 @@ public class hotelController {
         {
             hotelrepo.save(hotel);
             model.addAttribute("sucessHotel","Hotel sucessfully added");
-            return "hotelform";
+            return "redirect:/viewHotel";
         }
         else{
             model.addAttribute("failure","Hotel Already exists");
@@ -77,16 +78,26 @@ public class hotelController {
 
         @Transactional
         @RequestMapping(value = "/updateHotel",method = RequestMethod.POST)
-        public String updateHotel(Hotel hotel,Model model)
+        public String updateHotel(Hotel hotel, Model model, RedirectAttributes redirAttrs)
         {
             Hotel hotel1= hotelrepo.getById(hotel.getHotelID());
 
             if(hotel.getHotelID()!= null)
             {
-                hotelrepo.updateHotel(hotel1.getHotelPhoneNumber(),hotel1.getHotelID());
-                hotel1.setHotelPhoneNumber(hotel.getHotelPhoneNumber());
-                model.addAttribute("sucessfully","Updated sucessfully");
-                return "redirect:/viewHotel";
+                if(!hotel.getHotelPhoneNumber().equals(hotel1.getHotelPhoneNumber())) {
+
+                    hotelrepo.updateHotel(hotel1.getHotelPhoneNumber(), hotel1.getHotelID());
+                    hotel1.setHotelPhoneNumber(hotel.getHotelPhoneNumber());
+
+                    redirAttrs.addFlashAttribute("successNumber", "Phone Number Updated successfully");
+                    return "redirect:/viewHotel";
+                }
+                else
+                {
+                    model.addAttribute("notValid","Same Contact Number");
+                    return "redirect:/viewHotel";
+
+                }
             }
             else
             {

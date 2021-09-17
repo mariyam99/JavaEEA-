@@ -40,5 +40,15 @@ public class Employees {
     @JoinColumn(name="hotelid")
     private Hotel hotel;
 
-
+    public Employees(String firstName, String lastName, String address, String phoneNumber, double salary, String employeeRole, String nic, String emailEmployee, Hotel hotel) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+        this.salary = salary;
+        this.employeeRole = employeeRole;
+        this.nic = nic;
+        this.emailEmployee = emailEmployee;
+        this.hotel = hotel;
+    }
 }

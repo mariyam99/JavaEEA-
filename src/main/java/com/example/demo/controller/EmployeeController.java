@@ -12,6 +12,7 @@ import org.passay.CharacterRule;
 import org.passay.PasswordGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -31,7 +32,7 @@ import javax.validation.constraints.Email;
 import java.util.List;
 import java.util.Optional;
 
-
+@Configuration
 @Controller
 public class EmployeeController {
 

@@ -31,17 +31,18 @@
     <div class="w3-teal">
         <button id="openNav" class="w3-button w3-teal w3-xlarge" onclick="w3_open()">&#9776;</button>
         <div class="w3-container">
-            <h1>My Page</h1>
+            <h1>View Employee</h1>
         </div>
     </div>
 
     <div class="container">
-        <div class="title">
-            <h3>Tables</h3>
+
+        <div class="alert alert-success" th:if="${sucessUpdated}" th:text="${sucessUpdated}">
+            <strong>Sucess</strong> Phone Number Updated successfully
         </div>
+
         <div class="row">
             <div class="col-md-12">
-                <h4>Employee</h4>
             </div>
             <div class="col-lg-8 col-md-10 ml-auto mr-auto">
                 <div class="table-responsive" th:if="${ not#lists.isEmpty(employeelist)}">
@@ -99,8 +100,6 @@
                             <td class="td-actions text-right">
 
                                 <form th:action="@{/updateEmployee}" th:method="POST">
-
-                                    <div class="alert_success" role="alert" th:text="${sucessUpdated}" th:if="${sucessUpdated}"></div>
 
                                     <input type="hidden"  name="employeeId" th:value="${employeeL.employeeId}" />
 

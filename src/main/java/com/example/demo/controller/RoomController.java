@@ -1,9 +1,11 @@
 package com.example.demo.controller;
 
 
+import com.example.demo.enitity.Booking;
 import com.example.demo.enitity.Employees;
 import com.example.demo.enitity.Hotel;
 import com.example.demo.enitity.Room;
+import com.example.demo.repo.BookingRepo;
 import com.example.demo.repo.HotelRepo;
 import com.example.demo.repo.RoomRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,9 @@ public class RoomController {
 
     @Autowired
     private HotelRepo hotelRepo;
+
+    @Autowired
+    private BookingRepo bookingRepo;
 
 
     @RequestMapping("/addRoomform")
@@ -77,6 +82,7 @@ public class RoomController {
         return "viewRoom";
 
     }
+
 
 
     @Transactional

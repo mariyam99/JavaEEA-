@@ -17,6 +17,7 @@
         <a th:href="@{/managerHome}" class="w3-bar-item w3-button">Home</a>
         <a th:href="@{/addRoomform}" class="w3-bar-item w3-button">Add Room</a>
         <a th:href="@{/viewRoom}" class="w3-bar-item w3-button">View Room</a>
+        <a th:href="@{/deleteR}" class="w3-bar-item w3-button">Delete Room</a>
         <a th:href="@{/manageBooking}" class="w3-bar-item w3-button">View Bookings</a>
         <a th:href="@{/updateManagerProfile}" class="w3-bar-item w3-button">Update Profile</a>
         <a th:href="@{/logout}" class="w3-bar-item w3-button">Logout</a>
@@ -87,8 +88,9 @@
                                 </form>
                             </td>
 
+
                             <td class="td-actions text-right">
-                            <form th:action="@{/deleteRoom}"  method="POST">
+                                <form th:action="@{/deleteRoom}"  method="POST">
 
                                     <div class="alert_success" role="alert" th:text="${sucessDeleteRoom}" th:if="${sucessDeleteRoom}"></div>
 

@@ -59,8 +59,32 @@ public class HotelMobileController {
             hashMap.put("result","failure");
         }
         return hashMap;
+    }
+
+    @PostMapping("editHotel/{id}")
+    public HashMap<String,String> editHotel(@PathVariable(value = "id")Long id)
+    {
+        HashMap<String,String> hashMap = new HashMap<>();
+
+        Hotel hotel1 = new Hotel();
+
+        Hotel hotel = hotelRepo.findByHotelID(id);
+        if(hotelRepo.existsById(hotel.getHotelID()))
+        {
+            hotelRepo.updateHotel(hotel.getHotelPhoneNumber(),hotel.getHotelID());
+            hotel.setHotelPhoneNumber(hotel1.getHotelPhoneNumber());
+            hashMap.put("result","success");
+        }else
+        {
+            hashMap.put("result","failure");
+
+        }
+        return hashMap;
+
+
 
     }
+
 
 
 

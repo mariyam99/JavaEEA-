@@ -30,4 +30,7 @@ public interface RoomRepo extends JpaRepository<Room,Long> {
 
     Room findByRoomId(Long roomId);
 
+    @Query(value = "SELECT * FROM room WHERE status LIKE 'AVAILABLE'",nativeQuery = true)
+    List<Room> findRoomsA();
+
 }
