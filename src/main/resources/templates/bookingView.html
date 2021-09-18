@@ -23,7 +23,6 @@
 </head>
 <body>
 
-<div class="container">
 
     <div class="row">
 
@@ -44,6 +43,7 @@
                     </thead>
                     <tbody>
                     <tr th:each="bookL : ${booking}">
+                        <td class="text-center" th:text="${bookL.bookingId}">
                         <td class="text-center" th:text="${bookL.room.roomType}">
                         <td class="text-center" th:text="${bookL.startDate}">
                         <td class="text-center" th:text="${bookL.endDate}"></td>
@@ -58,7 +58,7 @@
             </div>
         </div>
 
-    </div>
+
 </div>
 
 

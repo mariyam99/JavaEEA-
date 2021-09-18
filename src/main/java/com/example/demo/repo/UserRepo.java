@@ -27,7 +27,4 @@ public interface UserRepo extends JpaRepository <User,Long>{
     int updateUserProfile(User user);
 
 
-    User findUserById(Long id);
-
-
 }

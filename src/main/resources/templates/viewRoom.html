@@ -36,7 +36,6 @@
         </div>
     </div>
 
-    <div class="container">
 
         <div class="row">
 
@@ -71,17 +70,23 @@
 
                             <td class="td-actions text-right">
 
-                                <form th:action="@{/updateRoom}" method="post">
+                                <form th:action="@{/updateRoom}" method="post" class="form-group">
 
                                     <div class="alert_success" role="alert" th:text="${sucessRoom}" th:if="${sucessRoom}"></div>
 
                                     <input type="hidden" name="roomId" th:value="${roomL.roomId}">
-                                    <input type="radio" id="status" name="status" th:value="${roomL.status}">
-                                     <label for="status">Active</label><br><br />
-                                    <input type="radio" id="status1" name="status" th:value="${roomL.status}">
-                                    <label for="status">Full</label><br><br />
-                                    <input type="radio" id="status2" name="status" th:value="${roomL.status}">
-                                    <label for="status">Repair</label><br><br />
+
+
+                                    <input type="radio" id="status" name="status"  value="AVAILABLE">
+                                     <label for="status">AVAILABLE</label><br><br />
+
+                                    <input type="radio" id="status1" name="status"  value="BOOKED">
+                                    <label for="status">BOOKED</label><br><br />
+
+                                    <input type="radio" id="status2" name="status"  value="REPAIRING">
+                                    <label for="status">REPAIRING</label><br><br />
+
+
                                     <button type="submit" rel="tooltip" class="btn btn-success btn-just-icon btn-sm" data-original-title="" title="">
                                     Update
                                 </button>
@@ -95,8 +100,7 @@
                                     <div class="alert_success" role="alert" th:text="${sucessDeleteRoom}" th:if="${sucessDeleteRoom}"></div>
 
                                     <input type="hidden" name="roomId" th:value="${roomL.roomId}">
-                                    <button type="submit" rel="tooltip" class="btn btn-danger btn-just-icon btn-sm"
-                                    >
+                                    <button type="submit" rel="tooltip" class="btn btn-danger btn-just-icon btn-sm">
                                         Delete
                                     </button>
                                 </form>
@@ -107,7 +111,6 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
 
         </div>
     </div>

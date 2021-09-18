@@ -40,9 +40,18 @@ public class hotelController {
 
         if(!hotelrepo.existsByHotelName(hotel.getHotelName()))
         {
-            hotelrepo.save(hotel);
-            model.addAttribute("sucessHotel","Hotel sucessfully added");
-            return "redirect:/viewHotel";
+
+            if(!hotelrepo.existsByHotelPhoneNumber(hotel.getHotelPhoneNumber())) {
+
+                hotelrepo.save(hotel);
+                model.addAttribute("sucessHotel", "Hotel sucessfully added");
+                return "redirect:/viewHotel";
+            }
+            else
+            {
+                model.addAttribute("failure","Hotel Already exists");
+                return "hotelform";
+            }
         }
         else{
             model.addAttribute("failure","Hotel Already exists");

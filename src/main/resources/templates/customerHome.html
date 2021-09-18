@@ -35,11 +35,11 @@
     <form th:action="@{/searchRoom}" th:method="POST">
     <div class="w3-col m3">
         <label><i class="fa fa-calendar-o"></i> Check In</label>
-        <input class="w3-input w3-border" type="text"  placeholder="DD MM YYYY"  id="txtCheckin" name="startDate" >
+        <input class="w3-input w3-border" type="text"  placeholder="DD MM YYYY"  id="txtCheckin" name="startDate" required >
     </div>
     <div class="w3-col m3">
         <label><i class="fa fa-calendar-o"></i> Check Out</label>
-        <input class="w3-input w3-border" type="text"  placeholder="DD MM YYYY"   id="txtCheckout" name="endDate" >
+        <input class="w3-input w3-border" type="text"  placeholder="DD MM YYYY"   id="txtCheckout" name="endDate" required >
     </div>
 
     <div class="w3-col m3">

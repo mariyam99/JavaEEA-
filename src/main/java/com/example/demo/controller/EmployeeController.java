@@ -32,7 +32,6 @@ import javax.validation.constraints.Email;
 import java.util.List;
 import java.util.Optional;
 
-@Configuration
 @Controller
 public class EmployeeController {
 
@@ -141,6 +140,8 @@ public class EmployeeController {
                 employees1.setEmployeeRole(employees.getEmployeeRole());
 
         }
+
+
             if(employees.getPhoneNumber() != null)
             {
                 employees1.setPhoneNumber(employees.getPhoneNumber());

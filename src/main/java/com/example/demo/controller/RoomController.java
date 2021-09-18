@@ -98,13 +98,12 @@ public class RoomController {
     }
 
     @RequestMapping(value = "/updateRoom",method = RequestMethod.POST)
-    public  String updateRoomStatus(Room room,Model model)
+    public  String updateRoomStatus(Room room,Model model,@RequestParam(name="status") String status)
     {
          Room room1=roomRepo.getById(room.getRoomId());
-
          if(room.getRoomId() != null)
          {
-            roomRepo.updateRoom(room1.getStatus(),room1.getRoomId());
+            roomRepo.updateRoom(status,room1.getRoomId());
             room1.setStatus(room.getStatus());
             model.addAttribute("sucessRoom","Updateed sucessfully the room status");
             return "redirect:/viewRoom";

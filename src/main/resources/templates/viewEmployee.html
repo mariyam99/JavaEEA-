@@ -14,6 +14,7 @@
         <button class="w3-bar-item w3-button w3-large"
                 onclick="w3_close()">Close &times;</button>
         <a th:href="@{/adminHome}" class="w3-bar-item w3-button">Home</a>
+        <a th:href="@{/employee}" class="w3-bar-item w3-button">Add Employee</a>
         <a th:href="@{/hotelform}" class="w3-bar-item w3-button">Add Hotel</a>
         <a th:href="@{/viewHotel}" class="w3-bar-item w3-button">View Hotel</a>
         <a th:href="@{/viewEmployee}" class="w3-bar-item w3-button">View Employee</a>
@@ -35,7 +36,6 @@
         </div>
     </div>
 
-    <div class="container">
 
         <div class="alert alert-success" th:if="${sucessUpdated}" th:text="${sucessUpdated}">
             <strong>Sucess</strong> Phone Number Updated successfully
@@ -103,7 +103,25 @@
 
                                     <input type="hidden"  name="employeeId" th:value="${employeeL.employeeId}" />
 
-                                    <input type="text" id="employeeRole" name="employeeRole" placeholder="Updated Role"><br />
+
+                                    <label>Choose the Update Role:</label>
+
+                                    <input type="radio" id="status" name="employeeRole"  value="Manager">
+                                    <label for="status">Manager</label><br><br />
+
+                                    <input type="radio" id="status1" name="employeeRole"  value="Cleaner">
+                                    <label for="status">Cleaner</label><br><br />
+
+                                    <input type="radio" id="status2" name="employeeRole"  value="Chef">
+                                    <label for="status">Chef</label><br><br />
+
+                                    <input type="radio" id="status4" name="employeeRole"  value="A.Chef">
+                                    <label for="status">Assitant Chef</label><br><br />
+
+                                    <input type="radio" id="status3" name="employeeRole"  value="Waiter">
+                                    <label for="status">Waiter</label><br><br />
+
+
 
                                     <input type="text"  id="phoneNumber"  name="phoneNumber" placeholder="Updated Phone Number"><br />
 
@@ -122,7 +140,7 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
+
 
         </div>
     </div>

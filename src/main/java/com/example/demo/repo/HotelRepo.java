@@ -15,6 +15,8 @@ public interface HotelRepo extends JpaRepository<Hotel,Long> {
 
 boolean existsByHotelName(String hotelName);
 
+boolean existsByHotelPhoneNumber(String hotelPhoneNumber);
+
 Hotel findByHotelID(Long hotelID);
 
 @Transactional

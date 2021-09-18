@@ -17,7 +17,13 @@
 <body>
 <form class="contact-form row" th:action="@{/addReservation}" method="post">
 
-<div class="w3-card-4" style="width:100%">
+
+    <div class="alert alert_error" role="alert" th:text="${invalid}" th:if="${invalid}"></div>
+    <div class="alert_success" role="alert" th:text="${Sucessfully}" th:if="${Sucessfully}"></div>
+
+
+
+    <div class="w3-card-4" style="width:100%">
         <header class="w3-container w3-white">
             <h2>Reservation Confirmation</h2>
             <input type="hidden" name="roomId" th:value="${room.roomId}">
@@ -33,9 +39,6 @@
 </div>
 
 <section class="get-in-touch">
-
-        <div class="alert alert_error" role="alert" th:text="${invalid}" th:if="${invalid}"></div>
-        <div class="alert_success" role="alert" th:text="${Sucessfully}" th:if="${Sucessfully}"></div>
 
         <div class="form-field col-lg-6">
             <input id="specialRequest" class="input-text js-input" type="text" name="specialRequest">

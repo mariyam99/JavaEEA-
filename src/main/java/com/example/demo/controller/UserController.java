@@ -161,6 +161,11 @@ public class UserController {
             user.setTel(null);
         }
 
+        if(oldPassword == "")
+        {
+            model.addAttribute("invalid","Only the old password should nt be entered to update");
+        }
+
 
         if (oldPassword=="" && newPassword=="")
         {
