@@ -1,6 +1,7 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <title>Update Profile</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -30,18 +31,17 @@
         </div>
     </div>
 
-    <!--<div class="card">-->
-    <!--    <h1>My Profile</h1>-->
-    <!--    <input type="hidden" name="id" id="id" >-->
-    <!--    <h2><a th:text="${username}"></a></h2>-->
-    <!--    <p class="title"><a th:text="${username.email}"></a></p>-->
-    <!--    <p><a th:text="${user.email}"></a></p>-->
-    <!--    <p><a th:text="${user.phoneNumber}"></a></p>-->
+    <div class="card">
+        <h1>My Profile</h1>
+        <input type="hidden" name="id" id="id" >
+        <h2><a th:text="${user}"></a></h2>
+        <p class="title"><a th:text="${user.email}"></a></p>
+        <p><a th:text="${user.tel}"></a></p>
 
-    <!--    <div style="margin: 24px 0;">-->
+        <div style="margin: 24px 0;">
 
-    <!--    </div>-->
-    <!--</div>-->
+        </div>
+    </div>
 
 
     <section class="get-in-touch">
@@ -101,8 +101,8 @@
         var  old_password=document.getElementById("oldPassword1").value;
         var error1=document.getElementById("error");
 
-        if(password==""){password=null}
-        if(old_password==""){old_password=null}
+        if(password===""){password=null}
+        if(old_password===""){old_password=null}
         if((password==null&&old_password==null) || (password!=null && old_password!= null))
         {
             error1.textContent=" "

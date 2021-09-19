@@ -37,8 +37,8 @@
     </div>
 
 
-        <div class="row">
 
+        <div class="row">
 
             <div class="col-lg-8 col-md-10 ml-auto mr-auto">
                 <div class="table-responsive" th:if="${ not#lists.isEmpty(roomList)}">
@@ -97,7 +97,10 @@
                             <td class="td-actions text-right">
                                 <form th:action="@{/deleteRoom}"  method="POST">
 
-                                    <div class="alert_success" role="alert" th:text="${sucessDeleteRoom}" th:if="${sucessDeleteRoom}"></div>
+                                    <div class="alert_success alert_success" th:if="${sucessDeleteRoom}">
+                                        <span th:text="${sucessDeleteRoom}"> </span>
+                                    </div>
+
 
                                     <input type="hidden" name="roomId" th:value="${roomL.roomId}">
                                     <button type="submit" rel="tooltip" class="btn btn-danger btn-just-icon btn-sm">

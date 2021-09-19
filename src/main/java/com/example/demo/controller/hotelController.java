@@ -63,6 +63,7 @@ public class hotelController {
 
     @RequestMapping("/viewHotel")
     public String listhotels(Model model){
+
         model.addAttribute("hotellist", hotelrepo.findAll());
         return "viewHotel";
 

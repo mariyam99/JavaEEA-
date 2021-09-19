@@ -1,10 +1,112 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <!-- Navigation Bar -->
+    <div class="w3-bar w3-white w3-large">
+        <a th:href="@{/home}" class="w3-bar-item w3-button w3-red w3-mobile"><i class="fa fa-bed w3-margin-right"></i>Hotel</a>
+        <a th:href="@{/viewBook}" class="w3-bar-item w3-button w3-mobile">My Bookings</a>
+        <a th:href="@{/about}" class="w3-bar-item w3-button w3-mobile">About Us</a>
+        <a th:href="@{/updateCustomerProfile}" class="w3-bar-item w3-button w3-mobile">Update Profile</a>
+        <a th:href="@{/logout}" class="w3-bar-item w3-button w3-right w3-light-grey w3-mobile">Logout</a>
+    </div>
+
 </head>
 <body>
+<div id="main">
+
+    <div class="card">
+        <h1>My Profile</h1>
+        <input type="hidden" name="id" id="id" >
+        <h2><a th:text="${user}"></a></h2>
+        <p class="title"><a th:text="${user.email}"></a></p>
+        <p><a th:text="${user.tel}"></a></p>
+
+        <div style="margin: 24px 0;">
+
+        </div>
+    </div>
+
+
+    <section class="get-in-touch">
+        <h1 class="title">Update your profile</h1>
+        <form class="contact-form row" th:action="@{/updateInfo}" method="post">
+
+            <div class="alert alert_error" role="alert" th:text="${invalid}" th:if="${invalid}"></div>
+            <div class="alert_success" role="alert" th:text="${sucess}" th:if="${sucess}"></div>
+
+
+            <div class="form-field col-lg-6 ">
+                <input id="email" class="input-text js-input" type="email" name="email" >
+                <label class="label" for="email">Update email </label>
+            </div>
+            <div class="form-field col-lg-6 ">
+                <input id="tel" class="input-text js-input" type="tel" name="tel"  maxlength="10" minlength="10">
+                <label class="label" for="tel">Updated Phone Number</label>
+
+            </div>
+
+            <h5>Change Password</h5>
+            <div class="form-field col-lg-12">
+                <input id="oldPassword" class="input-text js-input" type="password" name="oldPassword" >
+                <label class="label" for="oldPassword">Old Password </label>
+            </div>
+
+            <div class="form-field col-lg-12">
+                <input id="newPassword" class="input-text js-input" type="password" >
+                <label class="label" for="newPassword">Updated Password </label>
+            </div>
+
+            <div class="form-field col-lg-12">
+                <input class="submit-btn" type="submit" value="Update!">
+            </div>
+        </form>
+    </section>
+
+
+</div>
+
+<script>
+    function w3_open() {
+        document.getElementById("main").style.marginLeft = "25%";
+        document.getElementById("mySidebar").style.width = "25%";
+        document.getElementById("mySidebar").style.display = "block";
+        document.getElementById("openNav").style.display = 'none';
+    }
+    function w3_close() {
+        document.getElementById("main").style.marginLeft = "0%";
+        document.getElementById("mySidebar").style.display = "none";
+        document.getElementById("openNav").style.display = "inline-block";
+    }
+
+    document.getElementById("password").addEventListener("change",checkFilled);
+    function checkFilled(){
+        var password = document.getElementById("password").value;
+        var  old_password=document.getElementById("oldPassword1").value;
+        var error1=document.getElementById("error");
+
+        if(password===""){password=null}
+        if(old_password===""){old_password=null}
+        if((password==null&&old_password==null) || (password!=null && old_password!= null))
+        {
+            error1.textContent=" "
+        }
+        else if((password==null && old_password!= null))
+        {
+            error1.textContent="old password and new passwoed should be filled to change password"
+
+        }
+
+    }
+
+
+
+</script>
+
+
 
 </body>
 </html>

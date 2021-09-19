@@ -36,6 +36,7 @@ public class UserController {
 
     @RequestMapping("/registration")
     public String registerPage(){
+
         return "registration";
     }
 
@@ -150,24 +151,23 @@ public class UserController {
                                 @RequestParam(name = "newPassword",required = false)String newPassword)
     {
 
-
-        if(user.getEmail()=="")
+        if(user.getEmail().equals(""))
         {
             user.setEmail(null);
         }
 
-        if(user.getTel()=="")
+        if(user.getTel().equals(""))
         {
             user.setTel(null);
         }
 
-        if(oldPassword == "")
+        if(oldPassword.equals(""))
         {
             model.addAttribute("invalid","Only the old password should nt be entered to update");
         }
 
 
-        if (oldPassword=="" && newPassword=="")
+        if (oldPassword.equals("") && newPassword.equals(""))
         {
             oldPassword = null;
             newPassword= null;
@@ -246,6 +246,11 @@ public class UserController {
     public String customerUpdateProfile(Model model,HttpServletRequest request)
     {
 
+        HttpSession session = request.getSession();
+        String username=(String)session.getAttribute("userName");
+
+        User user= userRepo.findByUserName(username);
+        model.addAttribute("user",user);
         return "updateCustomerProfile";
     }
 
