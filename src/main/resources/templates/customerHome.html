@@ -23,10 +23,10 @@
     </div>
 </head>
 
-<body>
+<body th:style="'background: url(/image/bk.jpg) no-repeat center center fixed;'">
 
 
-<div class="w3-container w3-margin-top" id="rooms">
+<div class="w3-container w3-margin-top" id="rooms" >
     <h3>Rooms</h3>
     <p>Make yourself at home is our slogan. We offer the best beds in the industry. Sleep well and rest well.</p>
 </div>
@@ -35,11 +35,11 @@
     <form th:action="@{/searchRoom}" th:method="POST">
     <div class="w3-col m3">
         <label><i class="fa fa-calendar-o"></i> Check In</label>
-        <input class="w3-input w3-border" type="text"  placeholder="DD MM YYYY"  id="txtCheckin" name="startDate" required >
+        <input class="w3-input w3-border" type="text"  placeholder="YYYY MM DD"  id="txtCheckin" name="startDate" required >
     </div>
     <div class="w3-col m3">
         <label><i class="fa fa-calendar-o"></i> Check Out</label>
-        <input class="w3-input w3-border" type="text"  placeholder="DD MM YYYY"   id="txtCheckout" name="endDate" required >
+        <input class="w3-input w3-border" type="text"  placeholder="YYYY MM DD"   id="txtCheckout" name="endDate" required >
     </div>
 
     <div class="w3-col m3">
@@ -81,11 +81,9 @@
         <img th:src="@{/image/twin.jpg}" alt="Norway" style="width:100%">
         <div class="w3-container w3-white">
             <h3>Twin Room</h3>
-            <h6 class="w3-opacity">From $199</h6>
             <p>King-size bed</p>
             <p>40m<sup>2</sup></p>
             <p class="w3-large"><i class="fa fa-bath"></i> <i class="fa fa-phone"></i> <i class="fa fa-wifi"></i> <i class="fa fa-tv"></i> <i class="fa fa-glass"></i> <i class="fa fa-cutlery"></i></p>
-            <button class="w3-button w3-block w3-black w3-margin-bottom">Choose Room</button>
         </div>
     </div>
 
